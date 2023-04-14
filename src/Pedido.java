@@ -2,35 +2,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    private ModalidadeEntrega modalidadesEntrega;
+    private ModalidadeEntrega modalidadeEntrega;
     private FormaPamento formaPagamento;
     private double valorTotal;
-    private List <Cliente> clientes;
-    private List <Pizza> pizzas;
-    private List <Bebida> bebidas;
-    
+    private Cliente cliente;
+    private List<Pizza> pizzas;
+    private List<Bebida> bebidas;
+
     public Pedido() {
         this.valorTotal = 0;
         this.bebidas = new ArrayList<Bebida>();
         this.pizzas = new ArrayList<Pizza>();
-        this.clientes = new ArrayList<Cliente>();
     }
 
-    public Pedido(ModalidadeEntrega modalidadeEntrega, FormaPamento formaPagamento, double valorTotal, List<Cliente> clientes, List<Pizza> pizzas, List<Bebida> bebidas) {
-        this.modalidadesEntrega = modalidadeEntrega;
+    public Pedido(ModalidadeEntrega modalidadeEntrega, FormaPamento formaPagamento, double valorTotal, Cliente cliente,
+            List<Pizza> pizzas, List<Bebida> bebidas) {
+        this.modalidadeEntrega = modalidadeEntrega;
         this.formaPagamento = formaPagamento;
         this.valorTotal = valorTotal;
-        this.clientes = clientes;
+        this.cliente = cliente;
         this.pizzas = pizzas;
         this.bebidas = bebidas;
     }
 
     public ModalidadeEntrega getModalidadesEntrega() {
-        return modalidadesEntrega;
+        return modalidadeEntrega;
     }
 
-    public void setModalidadesEntrega(ModalidadeEntrega modalidadeEntrega) {
-        this.modalidadesEntrega = modalidadeEntrega;
+    public void setModalidadeEntrega(ModalidadeEntrega modalidadeEntrega) {
+        this.modalidadeEntrega = modalidadeEntrega;
     }
 
     public FormaPamento getFormaPagamento() {
@@ -49,12 +49,12 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 
-    public List<Cliente> getClientes() {
-        return clientes;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public List<Pizza> getPizzas() {
@@ -74,8 +74,9 @@ public class Pedido {
     }
 
     public String toString() {
-        return "Pedido [bebidas=" + bebidas + ", clientes=" + clientes + ", formaPagamento=" + formaPagamento
-                + ", modalidadesEntrega=" + modalidadesEntrega + ", pizzas=" + pizzas + ", valorTotal=" + valorTotal + "]";
+        return "Pedido [bebidas=" + bebidas + ", clientes=" + cliente + ", formaPagamento=" + formaPagamento
+                + ", modalidadesEntrega=" + modalidadeEntrega + ", pizzas=" + pizzas + ", valorTotal=" + valorTotal
+                + "]";
     }
 
 }

@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pizza {
-    
+
     private Tamanho tamanho;
-    private List <Sabor> sabores;
+    private List<Sabor> sabores;
 
     public Pizza() {
         this.tamanho = new Tamanho();
@@ -27,7 +27,7 @@ public class Pizza {
     }
 
     public void setSabores(Sabor sabor) {
-        if (this.sabores.size() < this.tamanho.getQtdSabor()){
+        if (this.sabores.size() < this.tamanho.getQtdSabor()) {
             this.sabores.add(sabor);
         } else {
             System.out.println("Quantidade de sabores excedida");
@@ -42,7 +42,7 @@ public class Pizza {
         this.tamanho = tamanho;
     }
 
-    public double getPreco(){
+    public double getPreco() {
         double preco = 0;
         for (Sabor sabor : sabores) {
             preco += sabor.getPreco();

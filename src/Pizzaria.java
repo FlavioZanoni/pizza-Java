@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pizzaria {
-    
+
     private String nome;
     private String endereco;
-    private List <Pizza> pizzas;
-    private List <Bebida> bebidas;
-    private List <Cliente> clientes;
+    private List<Pizza> pizzas;
+    private List<Bebida> bebidas;
+    private List<Cliente> clientes;
 
     public Pizzaria() {
         this.pizzas = new ArrayList<Pizza>();

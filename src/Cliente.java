@@ -12,11 +12,10 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-
     public String getNome() {
         return nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -29,13 +28,13 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public void setEndereco(String rua, int numero, String complemento, String cep ){
+    public void setEndereco(String rua, int numero, String complemento, String cep) {
         Endereco endereco = new Endereco(rua, numero, complemento, cep);
 
         this.endereco = endereco;
     }
 
-    public String toString(){
+    public String toString() {
         return "Nome: " + this.nome + "\n Endereço: " + this.endereco.toString();
     }
 }

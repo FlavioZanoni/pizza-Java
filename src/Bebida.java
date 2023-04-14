@@ -1,5 +1,5 @@
 public class Bebida {
-    
+
     private String nome;
     private double preco;
 
@@ -26,6 +26,5 @@ public class Bebida {
     public void setPreco(double preco) {
         this.preco = preco;
     }
-    
 
 }

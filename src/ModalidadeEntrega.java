@@ -1,12 +1,14 @@
 public class ModalidadeEntrega {
     
     private String nome;
+    private double valor;
 
     public ModalidadeEntrega() {
     }
 
-    public ModalidadeEntrega(String nome) {
+    public ModalidadeEntrega(String nome, Double valor) {
         this.nome = nome;
+        this.valor = valor;
     }
 
     public String getNome() {
@@ -15,6 +17,14 @@ public class ModalidadeEntrega {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
 }

@@ -1,5 +1,5 @@
 public class Sabor {
-    
+
     private String nome;
     private double preco;
 

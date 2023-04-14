@@ -46,8 +46,9 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String toString(){
-        return "Rua: " + this.rua + "\n Número: " + this.numero + "\n Complemento: " + this.complemento + "\n CEP: " + this.cep;
+    public String toString() {
+        return "Rua: " + this.rua + "\n Número: " + this.numero + "\n Complemento: " + this.complemento + "\n CEP: "
+                + this.cep;
     }
 
 }

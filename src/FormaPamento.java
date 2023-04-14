@@ -1,5 +1,5 @@
 public class FormaPamento {
-    
+
     private String nome;
 
     public FormaPamento() {
