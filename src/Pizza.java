@@ -51,4 +51,9 @@ public class Pizza {
         return preco / (double) this.tamanho.getQtdSabor();
     }
 
+    @Override
+    public String toString() {
+        return this.tamanho.getNome() + ", R$: " + this.getPreco();
+    }
+
 }

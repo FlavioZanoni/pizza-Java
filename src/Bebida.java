@@ -27,4 +27,9 @@ public class Bebida {
         this.preco = preco;
     }
 
+    @Override
+    public String toString() {
+        return this.nome + ", R$: " + this.preco;
+    }
+
 }

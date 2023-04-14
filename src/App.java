@@ -11,6 +11,7 @@ public class App {
     static List<Tamanho> tamanhos = new ArrayList<Tamanho>();
     static List<Sabor> sabores = new ArrayList<Sabor>();
     static List<ModalidadeEntrega> modalidadesEntrega = new ArrayList<ModalidadeEntrega>();
+    static List<FormaPagamento> formasPagamento = new ArrayList<FormaPagamento>();
 
     static void populateAll() {
         Tamanho tamanho = new Tamanho("Pequena", 3);
@@ -58,6 +59,13 @@ public class App {
         modalidadesEntrega.add(modalidadeEntrega);
         modalidadeEntrega = new ModalidadeEntrega("A la carte", 0.00);
         modalidadesEntrega.add(modalidadeEntrega);
+
+        FormaPagamento FormaPagamento = new FormaPagamento("Cartão de crédito");
+        formasPagamento.add(FormaPagamento);
+        FormaPagamento = new FormaPagamento("Cartão de debito");
+        formasPagamento.add(FormaPagamento);
+        FormaPagamento = new FormaPagamento("PIX");
+        formasPagamento.add(FormaPagamento);
     }
 
     static void cadastrarCliente(Scanner sc) {
@@ -66,7 +74,12 @@ public class App {
         System.out.println("Digite a rua do cliente");
         String rua = sc.nextLine();
         System.out.println("Digite o numero da casa do cliente");
-        int numero = Integer.parseInt(sc.nextLine());
+        int numero = 0;
+        try {
+            numero = Integer.parseInt(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("numero invalido");
+        }
         System.out.println("Digite o complemento do cliente");
         String complemento = sc.nextLine();
         System.out.println("Digite o cep do cliente");
@@ -77,56 +90,71 @@ public class App {
 
     static void fazerPedido(Scanner sc) {
         Pedido pedido = new Pedido();
-        Pizza pizza = new Pizza();
+        Boolean continuar = true;
 
-        System.out.println("Digite o tamanho da Pizza");
-        for (Tamanho tamanho : tamanhos) {
-            System.out.println(tamanhos.indexOf(tamanho) + " - " + tamanho.toString());
+        // add pizza
+        while (continuar) {
+            List<Pizza> pizzas = new ArrayList<Pizza>();
+            Pizza pizza = new Pizza();
+
+            System.out.println("Digite o tamanho da Pizza");
+            for (Tamanho tamanho : tamanhos) {
+                System.out.println(tamanhos.indexOf(tamanho) + " - " + tamanho.toString());
+            }
+            String res = sc.nextLine();
+            String tamanho = tamanhos.get(Integer.parseInt(res)).getNome();
+            int count = 0;
+
+            switch (tamanho) {
+                case "Pequena":
+                    count = tamanhos.get(0).getQtdSabor();
+                    for (int i = 0; i < count; i++) {
+                        System.out.println("Digite o sabor " + (i + 1) + " da pizza");
+                        for (Sabor sabor : sabores) {
+                            System.out.println(sabores.indexOf(sabor) + " - " + sabor.toString());
+                        }
+                        int sabor = Integer.parseInt(sc.nextLine());
+                        pizza.setSabores(sabores.get(sabor));
+                    }
+                    break;
+                case "Media":
+                    count = tamanhos.get(1).getQtdSabor();
+                    for (int i = 0; i < count; i++) {
+                        System.out.println("Digite o sabor " + (i + 1) + " da pizza");
+                        for (Sabor sabor : sabores) {
+                            System.out.println(sabores.indexOf(sabor) + " - " + sabor.toString());
+                        }
+                        int sabor = Integer.parseInt(sc.nextLine());
+                        pizza.setSabores(sabores.get(sabor));
+                    }
+                    break;
+                case "Grande":
+                    count = tamanhos.get(2).getQtdSabor();
+                    for (int i = 0; i < count; i++) {
+                        System.out.println("Digite o sabor " + (i + 1) + " da pizza");
+                        for (Sabor sabor : sabores) {
+                            System.out.println(sabores.indexOf(sabor) + " - " + sabor.toString());
+                        }
+                        int sabor = Integer.parseInt(sc.nextLine());
+                        pizza.setSabores(sabores.get(sabor));
+                    }
+                    break;
+            }
+
+            pizzas.add(pizza);
+            pedido.setPizzas(pizzas);
+            System.out.println("Gostaria de pedir mais uma pizza? (S/N)");
+            res = sc.nextLine();
+            if (res.equals("N") || res.equals("n")) {
+                continuar = false;
+            }
         }
-        String res = sc.nextLine();
-        String tamanho = tamanhos.get(Integer.parseInt(res)).getNome();
-        int count = 0;
 
-        switch (tamanho) {
-            case "Pequena":
-                count = tamanhos.get(0).getQtdSabor();
-                for (int i = 0; i < count; i++) {
-                    System.out.println("Digite o sabor " + (i + 1) + " da pizza");
-                    for (Sabor sabor : sabores) {
-                        System.out.println(sabores.indexOf(sabor) + " - " + sabor.toString());
-                    }
-                    int sabor = Integer.parseInt(sc.nextLine());
-                    pizza.setSabores(sabores.get(sabor));
-                }
-                break;
-            case "Media":
-                count = tamanhos.get(1).getQtdSabor();
-                for (int i = 0; i < count; i++) {
-                    System.out.println("Digite o sabor " + (i + 1) + " da pizza");
-                    for (Sabor sabor : sabores) {
-                        System.out.println(sabores.indexOf(sabor) + " - " + sabor.toString());
-                    }
-                    int sabor = Integer.parseInt(sc.nextLine());
-                    pizza.setSabores(sabores.get(sabor));
-                }
-                break;
-            case "Grande":
-                count = tamanhos.get(2).getQtdSabor();
-                for (int i = 0; i < count; i++) {
-                    System.out.println("Digite o sabor " + (i + 1) + " da pizza");
-                    for (Sabor sabor : sabores) {
-                        System.out.println(sabores.indexOf(sabor) + " - " + sabor.toString());
-                    }
-                    int sabor = Integer.parseInt(sc.nextLine());
-                    pizza.setSabores(sabores.get(sabor));
-                }
-                break;
-        }
-
+        // add bebida
         System.out.println("Gostaria de adicionar bebida? (S/N)");
         String response = sc.nextLine();
 
-        if (response.equals("S")) {
+        if (response.equals("S") || response.equals("s")) {
             Boolean more = true;
             List<Bebida> bebidasPedido = new ArrayList<Bebida>();
 
@@ -140,7 +168,7 @@ public class App {
 
                 System.out.println("Gostaria de adicionar mais bebidas? (S/N)");
                 response = sc.nextLine();
-                if (response.equals("N")) {
+                if (response.equals("N") || response.equals("n")) {
                     more = false;
                 }
             }
@@ -162,6 +190,15 @@ public class App {
             int cliente = Integer.parseInt(sc.nextLine());
             pedido.setCliente(clientes.get(cliente));
         }
+
+        System.out.println("Digite o numero da forma de pagamento");
+        for (FormaPagamento forma : formasPagamento) {
+            System.out.println(formasPagamento.indexOf(forma) + " - " + forma.toString());
+        }
+        int forma = Integer.parseInt(sc.nextLine());
+        pedido.setFormaPagamento(formasPagamento.get(forma));
+
+        pedidos.add(pedido);
     }
 
     public static void main(String[] args) throws Exception {
@@ -191,15 +228,20 @@ public class App {
                     }
                     break;
             }
-        }
 
-        System.out.println("Obrigado por utilizar o sistema da Pizzaria");
-        System.out.println("Gostaria de fazer outro pedido? (S/N)");
-        Scanner sc = new Scanner(System.in);
-        String response = sc.nextLine();
-        if (response.equals("S")) {
-            sair = false;
+            if (response != 1) {
+                continue;
+            } else {
+                System.out.println("Resumo do pedido");
+                System.out.println(pedidos.get(pedidos.size() - 1).toString());
+                System.out.println("Obrigado por utilizar o sistema da Pizzaria");
+                System.out.println("Gostaria de fazer outro pedido? (S/N)");
+                String res = sc.nextLine();
+                if (res.equals("S") || res.equals("s")) {
+                    sair = false;
+                }
+                sair = true;
+            }
         }
-        sair = true;
     }
 }

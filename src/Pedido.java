@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Pedido {
     private ModalidadeEntrega modalidadeEntrega;
-    private FormaPamento formaPagamento;
+    private FormaPagamento formaPagamento;
     private double valorTotal;
     private Cliente cliente;
     private List<Pizza> pizzas;
@@ -15,7 +15,8 @@ public class Pedido {
         this.pizzas = new ArrayList<Pizza>();
     }
 
-    public Pedido(ModalidadeEntrega modalidadeEntrega, FormaPamento formaPagamento, double valorTotal, Cliente cliente,
+    public Pedido(ModalidadeEntrega modalidadeEntrega, FormaPagamento formaPagamento, double valorTotal,
+            Cliente cliente,
             List<Pizza> pizzas, List<Bebida> bebidas) {
         this.modalidadeEntrega = modalidadeEntrega;
         this.formaPagamento = formaPagamento;
@@ -25,7 +26,7 @@ public class Pedido {
         this.bebidas = bebidas;
     }
 
-    public ModalidadeEntrega getModalidadesEntrega() {
+    public ModalidadeEntrega getModalidadeEntrega() {
         return modalidadeEntrega;
     }
 
@@ -33,11 +34,11 @@ public class Pedido {
         this.modalidadeEntrega = modalidadeEntrega;
     }
 
-    public FormaPamento getFormaPagamento() {
+    public FormaPagamento getFormaPagamento() {
         return formaPagamento;
     }
 
-    public void setFormaPagamento(FormaPamento formaPagamento) {
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 
@@ -73,10 +74,28 @@ public class Pedido {
         this.bebidas = bebidas;
     }
 
+    public void calcularValorTotal() {
+        double valorTotal = 0;
+        for (Pizza pizza : pizzas) {
+            valorTotal += pizza.getPreco();
+        }
+        for (Bebida bebida : bebidas) {
+            valorTotal += bebida.getPreco();
+        }
+        setValorTotal(valorTotal);
+
+        modalidadeEntrega.getValor();
+        if (modalidadeEntrega.getValor() > 0) {
+            valorTotal += modalidadeEntrega.getValor();
+        }
+
+    }
+
     public String toString() {
-        return "Pedido [bebidas=" + bebidas + ", clientes=" + cliente + ", formaPagamento=" + formaPagamento
-                + ", modalidadesEntrega=" + modalidadeEntrega + ", pizzas=" + pizzas + ", valorTotal=" + valorTotal
-                + "]";
+        calcularValorTotal();
+        return "\npizzas: " + pizzas + "\nbebidas: " + bebidas + "\nmodalidade de entrega: "
+                + modalidadeEntrega.getNome() + "\nforma de pagamento: " + formaPagamento.getNome()
+                + "\nvalor total: " + valorTotal;
     }
 
 }

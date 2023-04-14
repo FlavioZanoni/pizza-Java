@@ -1,5 +1,5 @@
 public class ModalidadeEntrega {
-    
+
     private String nome;
     private double valor;
 
@@ -25,6 +25,11 @@ public class ModalidadeEntrega {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return this.nome + ", R$: " + this.valor;
     }
 
 }

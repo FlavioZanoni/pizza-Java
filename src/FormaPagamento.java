@@ -1,11 +1,11 @@
-public class FormaPamento {
+public class FormaPagamento {
 
     private String nome;
 
-    public FormaPamento() {
+    public FormaPagamento() {
     }
 
-    public FormaPamento(String nome) {
+    public FormaPagamento(String nome) {
         this.nome = nome;
     }
 
@@ -15,6 +15,11 @@ public class FormaPamento {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return this.nome;
     }
 
 }
