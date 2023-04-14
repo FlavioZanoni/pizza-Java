@@ -20,7 +20,7 @@ public class Sabor {
     }
 
     public double getPreco() {
-        return preco;
+        return this.preco;
     }
 
     public void setPreco(double preco) {

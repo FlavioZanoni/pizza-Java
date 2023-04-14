@@ -102,10 +102,12 @@ public class App {
                 System.out.println(tamanhos.indexOf(tamanho) + " - " + tamanho.toString());
             }
             String res = sc.nextLine();
-            String tamanho = tamanhos.get(Integer.parseInt(res)).getNome();
+            Tamanho tamanho = tamanhos.get(Integer.parseInt(res));
             int count = 0;
 
-            switch (tamanho) {
+            pizza.setTamanho(tamanho);
+
+            switch (tamanho.getNome()) {
                 case "Pequena":
                     count = tamanhos.get(0).getQtdSabor();
                     for (int i = 0; i < count; i++) {
@@ -202,9 +204,9 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        Boolean sair = true;
+        Boolean sair = false;
         populateAll();
-        while (sair) {
+        while (!sair) {
 
             System.out.println("Bem vindo a Pizzaria do Flavin");
 
@@ -237,10 +239,9 @@ public class App {
                 System.out.println("Obrigado por utilizar o sistema da Pizzaria");
                 System.out.println("Gostaria de fazer outro pedido? (S/N)");
                 String res = sc.nextLine();
-                if (res.equals("S") || res.equals("s")) {
-                    sair = false;
+                if (res.equals("N") || res.equals("n")) {
+                    sair = true;
                 }
-                sair = true;
             }
         }
     }

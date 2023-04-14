@@ -44,11 +44,12 @@ public class Pizza {
 
     public double getPreco() {
         double preco = 0;
+
         for (Sabor sabor : sabores) {
             preco += sabor.getPreco();
         }
 
-        return preco / (double) this.tamanho.getQtdSabor();
+        return preco / getSabores().size();
     }
 
     @Override
